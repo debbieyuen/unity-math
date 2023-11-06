@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Motion : MonoBehaviour
+public class LookAt : MonoBehaviour
 {
-    public float speed = 3f;
+    public Transform target;
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(-Input.GetAxis("Horizontal") * speed * Time.deltaTime, 0, 0);
+        Vector3 relativePos = target.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(relativePos);
     }
 }
